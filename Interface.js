@@ -1,0 +1,33 @@
+/**
+ * @author Patrick Wolleb
+ */
+
+
+var Interface = function(name, methods) {
+	
+	if(arguments.length != 2)  throw new Error('Interface::constructor -- Incorrect number of arguments: Expected 2 received ' + arguments.length);
+	
+	this.name = name;
+	this.methods = [];
+	
+	for(var i = 0, l = methods.length, m = null; i < l; ++i) {
+		m = methods[i];
+		if(typeof m !== 'string') throw new Error('Interface::constructor -- Methods expected to be passed as strings');
+		this.methods.push(m);
+	}	
+}
+
+Interface.check = function(object) {
+	if(arguments.length < 2) throw new Error('Interface::check -- Incorrect number of arguments: Expected at least 2 received ' + arguments.length);
+	
+	var interFace, m;
+	for(var i=1, l = arguments.length; i < l; ++i) {
+		interFace = arguments[i];
+		if(interFace.constructor != Interface) throw new Error('Interface::check -- Arguments 2 and above expected to be of type Interface');
+		
+		for(var j=0, l=interFace.methods.length; j < l; ++j) {
+			m = interFace.methods[i];
+			if(!object[m] || typeof object[m] !== 'function')  throw new Error('Function Interface.ensureImplements: object does not implement ' + interFace.name + 'Method ' + method + ' was not found.');
+		}
+	}
+}
