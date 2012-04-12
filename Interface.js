@@ -3,6 +3,19 @@
  */
 
 
+/**
+ * Class Interface
+ * 
+ * Emulates Interface that is known from classic languages such as Java, C++, C#
+ * 
+ * Usage:
+ * 
+ * var Foo = new Interface('Foo', ['method1' , 'method2']);
+ * 
+ * var objectImplementingFoo = new ObjectImplementingFoo();
+ * Interface.check(objectImplementingFoo);   
+ * 
+ */
 var Interface = function(name, methods) {
 	
 	if(arguments.length != 2)  throw new Error('Interface::constructor -- Incorrect number of arguments: Expected 2 received ' + arguments.length);
