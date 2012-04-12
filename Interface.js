@@ -13,7 +13,7 @@
  * var Foo = new Interface('Foo', ['method1' , 'method2']);
  * 
  * var objectImplementingFoo = new ObjectImplementingFoo();
- * Interface.check(objectImplementingFoo);   
+ * Interface.check(objectImplementingFoo, Foo);   
  * 
  */
 var Interface = function(name, methods) {
