@@ -1,14 +1,16 @@
-var RenderModel = new Interface('Renderable', ['getRotation', 'getX', 'getY']);
-var RenderView = new Interface('Renderable', ['setRotation', 'setX', 'setY']);
+var RenderModel = new Interface('RenderModel', ['getRotation', 'getX', 'getY']);
+var RenderView = new Interface('RenderView', ['setRotation', 'setX', 'setY']);
 
 var Renderer = function() {
 	this.items = [];
 }
 
 Renderer.prototype.addItem = function(model, view) {
-	Interface.check(item, RenderModel);
-	Interface.check(view, RenderView);
-	items.push({model:model, view:view})
+	
+	
+	//Interface.check(model, RenderModel);
+	//Interface.check(view, RenderView);
+	this.items.push({model:model, view:view})
 }
 
 Renderer.prototype.removeItem = function(object) {

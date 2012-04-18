@@ -34,7 +34,10 @@ Interface.check = function(object) {
 	
 	var interFace, m;
 	
+	
 	for(var i=1, l = arguments.length; i < l; ++i) {
+		
+	console.log(i , arguments[i]);
 		interFace = arguments[i];
 		if(interFace.constructor != Interface) throw new Error('Interface::check -- Arguments 2 and above expected to be of type Interface');
 		

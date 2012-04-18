@@ -11,20 +11,40 @@
 		<script>
 			
 			
+			
+			
 			// Model class declaration implements RenderModel
 			var RenderModelClass = function() {
-				
+				this._rotation = this._x = this._y = 0.0;
+				this._vx = Math.random()  *100 - .5;
+				this._vy = Math.random() * 100- .5; 
+				this._vr = Math.random();
 			}	
 			
 			RenderModelClass.prototype.getRotation = function() {
-				
+				return this._rotation;
 			}		
 			
 			RenderModelClass.prototype.getX = function() {
-				
+				return this._x;
 			}
 			
 			RenderModelClass.prototype.getY = function() {
+				return this._y;
+			}
+			
+			RenderModelClass.prototype.update = function() {
+				this._x += this._vx;
+				this._y += this._vy;
+				this._rotation += this._vr;
+				if(this._x > 600 || this._x < 0) {
+					this._vx *= -1;
+					this._vr *= -1;
+				}
+				if(this._y > 400 || this._y < 0) {
+					this._vy *= -1;
+					this._vr *= -1;
+				} 
 			
 			}
 			
@@ -33,33 +53,53 @@
 			
 			// View class declaration implements RenderView
 			var RenderViewClass = function() {
-				
+				this.canvas = document.getElementById('canvas');
+				this.canvas.style.position = 'absolute'; 
+				var ctx = this.canvas.getContext('2d');
+				ctx.fillStyle="#FF0000";
+				ctx.fillRect(0,0,20,20);
 			}
 			
 			RenderViewClass.prototype.setRotation = function(val) {
-				
+				//this.canvas.rotation 
 			} 
 			
 			RenderViewClass.prototype.setX = function(val) {
-				
+				this.canvas.style.left = val.toString() + 'px';
 			} 
 			
 			RenderViewClass.prototype.setY = function(val) {
-				
+				this.canvas.style.top = val.toString() + 'px';
 			} 
 			
 			
 			
+			var renderer;
+			var renderModel;
+			function init() {
+				// Create instance of renderer and feed with items
+				renderer = new Renderer();
+				
+				renderModel = new RenderModelClass();
+				
+				renderer.addItem(renderModel, new RenderViewClass());
+				
+				
+				setInterval(render, 100);
+			}
 			
 			
-			
-			
+			function render() {
+				renderModel.update();
+				renderer.render();
+			}
 			
 			
 			
 		</script>
 		
 	</head>
-	<body>
+	<body onload="init();">
+		<canvas id="canvas" width="600" height="400"></canvas>
 	</body>
 </html>
