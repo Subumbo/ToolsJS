@@ -45,7 +45,6 @@
 					this._vy *= -1;
 					this._vr *= -1;
 				} 
-			
 			}
 			
 			
@@ -55,9 +54,7 @@
 			var RenderViewClass = function() {
 				this.canvas = document.getElementById('canvas');
 				this.canvas.style.position = 'absolute'; 
-				var ctx = this.canvas.getContext('2d');
-				ctx.fillStyle="#FF0000";
-				ctx.fillRect(0,0,20,20);
+				
 			}
 			
 			RenderViewClass.prototype.setRotation = function(val) {
@@ -65,7 +62,9 @@
 			} 
 			
 			RenderViewClass.prototype.setX = function(val) {
-				this.canvas.style.left = val.toString() + 'px';
+				var ctx = this.canvas.getContext('2d');
+				ctx.fillStyle="#FF0000";
+				ctx.fillRect(0,0,20,20);
 			} 
 			
 			RenderViewClass.prototype.setY = function(val) {

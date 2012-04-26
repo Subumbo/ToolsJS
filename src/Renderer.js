@@ -27,7 +27,7 @@ Renderer.prototype.render = function() {
 		m = item.model;
 		v.setRotation(m.getRotation());
 		v.setX(m.getY());
-		v.setY(m.getY()) 
+		v.setY(m.getX()) 
 	}
 	
 }
